@@ -6,10 +6,20 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = os.environ.get('DEBUG')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+DEBUG = os.environ.get('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = []
+if(DEBUG):
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = [
+        "altugkarakurt.com",
+        "www.altugkarakurt.com"
+    ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://altugkarakurt.com"
+]
 
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
@@ -81,6 +91,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "blog" / "static"]
+STATIC_ROOT = BASE_DIR / "static_root"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
