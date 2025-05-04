@@ -2,12 +2,10 @@
 {% load static %}
 {% block content %}
 
-<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-    <img src="{% static 'blog/images/altug.jpg' %}" class="rounded-circle" style="width:20%;height:20%;border-radius:20%;"/>
-    <div style="margin-top:2em;margin-bottom:2em;">
-        <center>
-            <p>My name is Altug Karakurt. I am a graduate student at University of Colorado, Boulder interested in information theory, scientific computing and machine learning.</p>
-        
+<img src="{% static 'blog/images/altug.jpg' %}" class="rounded-circle" style="width:15%;height:15%;border-radius:15%;"/>
+<div style="margin-top:2em;margin-bottom:2em;">
+    <p class="text-center">My name is Altug Karakurt. I am a graduate student at University of Colorado, Boulder interested in information theory, scientific computing and machine learning.</p>
+    <center>
         <div class="row justify-content-center align-items-center" style="width:80%;margin-top:2em;margin-bottom:2em;">
             <div class="col-sm">
                 <a href="https://scholar.google.com/citations?user=vMfCqr8AAAAJ" class="round_icon" target="_blank"><img src="{% static 'blog/images/scholar.svg' %}" style="background:transparent;width:25%;height:25%"></a>
@@ -22,8 +20,7 @@
                 <a href="mailto:altugkarakurt@gmail.com" class="round_icon" target="_blank"><img src="{% static 'blog/images/email.svg' %}" style="background:transparent;width:25%;height:25%;filter:invert(100%)"></a>
             </div>
         </div>
-        </center>
-    </div>
+    </center>
 </div>
 
 {% endblock content %}

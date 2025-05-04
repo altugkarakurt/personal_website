@@ -10,8 +10,8 @@ def about(request):
 
 
 def blog(request):
-    return render(request, "blog/index.html", {'title':'Blog', 'posts':Post.objects.all()})
+    return render(request, "blog/blog_index.html", {'title':'Blog', 'posts':Post.objects.all()})
 
 
 def projects(request):
-    return render(request, "blog/projects.html", {'title':'Projects'})
+    return render(request, "blog/project_index.html", {'title':'Projects'})

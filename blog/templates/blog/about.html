@@ -1,91 +1,68 @@
 {% extends "blog/base.html" %}
 {% block content %}
 
-<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-
-    <!-- Short Bio -->
-    <div class="justify-content-center align-items-center" style="width:80%;margin-bottom:1em;">
-        <h2>Bio</h2>
-        <p>
-            I'm a PhD student at Electrical, Computer and Energy Engineering at University of Colorado, Boulder. Prior to joining CU Boulder, I received my MS in Electrical & Computer Engineering from The Ohio State University in 2018 and my BS in Electrical & Electronics Engineering from Bilkent University in 2016.
-        </p>
-        <p>
-            My research focuses on information theory and scientific computing. The general theme of my work is to systematize and automate computational workflows and theoretical research. I work on designing general-purpose algorithms that are applicable to a wide range of problem settings and leveraging scientific computing to solve large-scale problem instances efficiently.
-        </p>
-    </div>
-
-    <!-- Research Overview -->
-    <div class="justify-content-center align-items-center" style="width:80%;margin-top:1em;margin-bottom:1em;">
-        <h2>Research</h2>
-    </div>
-
-    <div id="accordion" style="width:80%;margin-bottom:1em;">
-        <!-- Information Theory & Telecommunication -->
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <h4>Information Theory & Networking</h4>
-              </button>
-            </h5>
-          </div>
-      
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
-            <div class="card-body">
-                <div class="justify-content-center align-items-center" style="padding-left:2em;margin-top:2em;margin-bottom:1em;">
-                    <h4>Broadcast Channel</h4>
-                    <p>
-                        In progress...   
-                    </p>
-                    <br>
-                    <h4>Device Detection/Discovery</h4> 
-                    <p>
-                        The focus of my research in my MS was the asymptotic analysis of detecting/discovering nearby mobile devices. This problem finds applications in stock control applications, sensor networks and Internet of Things. Our work resulted in a <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=vMfCqr8AAAAJ&citation_for_view=vMfCqr8AAAAJ:HDshCWvjkbEC" target="_blank">paper</a> that won the Best Paper Award at WiOpt 2018 conference. 
-                    </p>
-                </div>
-                </div>
-            </div>
-          </div>
-          <!-- Scientific Computing Research -->
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                  <h4>Scientific Computing</h4>
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
-              <div class="card-body">
-                  <div class="justify-content-center align-items-center" style="padding-left:2em;margin-top:2em;margin-bottom:1em;">
-                    <p>
-                        A general theme in my research is building expert systems. Using my computational skills and my machine learning background, I collaborate with domain experts to help build custom domain-informed computational tools for their needs. I've had the pleasure to collaborate in a diverse set of fields with various requirements and challenges.
-                    </p>
-                    <br>
-                    <h4>Computational Musicology</h4> 
-                    <p>
-                        During my research internship at UPF Barcelona in 2015, I worked on an open source <a href="https://mtg.upf.edu/node/3538" target="_blank">general-purpose classifier</a> for non-Western classical music traditions, with example applications to Ottoman-Turkish Makam Music, Indian Hindustani & Carnatic Music and Jīngjù (Beijing Opera). I also had some exposure to music perception research during my time at Cognitive and Systematic  Musicology Lab at OSU.
-                    </p>
-                    <br>
-                    <h4>Multi-Armed Bandits (Reinforcement Machine Learning)</h4>
-                    <p>
-                        My undergraduate research was focused on the multi-armed bandit problem, a fundamental problem setting in the context of reinforcement/online machine learning. I studied various settings including graph diffusion models, active learning, multi-objective optimization and contextual learning. This work led to a series of <a href="https://scholar.google.com/citations?user=vMfCqr8AAAAJ&hl=en" target="_blank">publications</a> and an open source <a href="https://github.com/altugkarakurt/OCIMP" target="_blank">graph diffusion simulation library</a> for the so-called influence maximization problem. I was in charge of the computational work in this line of work.   
-                    </p>
-                    <br>
-                    <h4>Atmospheric Research</h4>
-                    <p>
-                        In <a href="https://projectpythia.org/pythia-cookoff-2024/" target="_blank">2024 Pythia Cookoff</a> at NCAR, I worked on data collected on the dust concentration in the Saharan desert. This is a significant factor in the climate of a large area in Saharan Africa with far reaching ecological and social impacts. We analyzed decades long historical data to predict the dust levels and also its atmospheric consequences. Our results are summarized in a <a href="https://projectpythia.org/dust-cookbook" target="_blank">Pythia cookbook</a>, which is an interactive computational tutorial.
-                    </p>
-                  </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+<!-- Short Bio -->
+<div class="justify-content-center align-items-center" style="width:80%;margin-bottom:1em;">
+    <h2>Bio</h2>
+    <p>I'm a PhD student at Electrical, Computer and Energy Engineering at University of Colorado, Boulder. Prior to joining CU Boulder, I received my MS in Electrical & Computer Engineering from The Ohio State University in 2018 and my BS in Electrical & Electronics Engineering from Bilkent University in 2016.</p>
+    <p>My research focuses on information theory and scientific computing. The general theme of my work is to systematize and automate computational workflows and theoretical research. I work on designing general-purpose algorithms that are applicable to a wide range of problem settings and leveraging scientific computing to solve large-scale problem instances efficiently.</p>
 </div>
 
+<!-- Research Overview -->
+<div class="justify-content-center align-items-center" style="width:80%;margin-top:1em;margin-bottom:1em;">
+    <h2>Research</h2>
+</div>
 
+<div id="accordion" style="width:80%;margin-bottom:1em;">
+  <!-- Information Theory & Telecommunication -->
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h4>Information Theory & Networking</h4>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+      <div class="card-body">
+        <div class="justify-content-center align-items-center" style="padding-left:2em;margin-top:2em;margin-bottom:1em;">
+            <h4>Broadcast Channel</h4>
+            <p>In progress...</p>
+            <br>
+            <h4>Device Detection/Discovery</h4> 
+            <p>The focus of my research in my MS was the asymptotic analysis of detecting/discovering nearby mobile devices. This problem finds applications in stock control applications, sensor networks and Internet of Things. Our work resulted in a <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=vMfCqr8AAAAJ&citation_for_view=vMfCqr8AAAAJ:HDshCWvjkbEC" target="_blank">paper</a> that won the Best Paper Award at WiOpt 2018 conference. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scientific Computing Research -->
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <h4>Scientific Computing</h4>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
+      <div class="card-body">
+        <div class="justify-content-center align-items-center" style="padding-left:2em;margin-top:2em;margin-bottom:1em;">
+          <p>A general theme in my research is building expert systems. Using my computational skills and my machine learning background, I collaborate with domain experts to help build custom domain-informed computational tools for their needs. I've had the pleasure to collaborate in a diverse set of fields with various requirements and challenges.</p>
+          <br>
+          <h4>Computational Musicology</h4> 
+          <p>During my research internship at UPF Barcelona in 2015, I worked on an open source <a href="https://mtg.upf.edu/node/3538" target="_blank">general-purpose classifier</a> for non-Western classical music traditions, with example applications to Ottoman-Turkish Makam Music, Indian Hindustani & Carnatic Music and Jīngjù (Beijing Opera). I also had some exposure to music perception research during my time at Cognitive and Systematic  Musicology Lab at OSU.</p>
+          <br>
+          <h4>Multi-Armed Bandits (Reinforcement Machine Learning)</h4>
+          <p>My undergraduate research was focused on the multi-armed bandit problem, a fundamental problem setting in the context of reinforcement/online machine learning. I studied various settings including graph diffusion models, active learning, multi-objective optimization and contextual learning. This work led to a series of <a href="https://scholar.google.com/citations?user=vMfCqr8AAAAJ&hl=en" target="_blank">publications</a> and an open source <a href="https://github.com/altugkarakurt/OCIMP" target="_blank">graph diffusion simulation library</a> for the so-called influence maximization problem. I was in charge of the computational work in this line of work.</p>
+          <br>
+          <h4>Atmospheric Research</h4>
+          <p>In <a href="https://projectpythia.org/pythia-cookoff-2024/" target="_blank">2024 Pythia Cookoff</a> at NCAR, I worked on data collected on the dust concentration in the Saharan desert. This is a significant factor in the climate of a large area in Saharan Africa with far reaching ecological and social impacts. We analyzed decades long historical data to predict the dust levels and also its atmospheric consequences. Our results are summarized in a <a href="https://projectpythia.org/dust-cookbook" target="_blank">Pythia cookbook</a>, which is an interactive computational tutorial.</p>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

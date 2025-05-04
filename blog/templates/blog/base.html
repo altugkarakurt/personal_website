@@ -34,22 +34,22 @@
             <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                <a class="nav-link {% if title == 'Home' %} active {% endif %}" href="{% url 'blog-home' %}">Home
-                    <span class="visually-hidden">(current)</span>
-                </a>
+                    <a class="nav-link {% if title == 'Home' %} active {% endif %}" href="{% url 'blog-home' %}">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link {% if title == 'About' %} active {% endif %}" href="{% url 'blog-about' %}">About</a>
+                    <a class="nav-link {% if title == 'About' %} active {% endif %}" href="{% url 'blog-about' %}">About</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a class="nav-link {% if title == 'Projects' %} active {% endif %}" href="{% url 'blog-projects' %}">Projects</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'blog-projects' %}" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'blog-index' %}" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Project 1</a>
-                        <a class="dropdown-item" href="#">Project 2</a>
+                        <a class="dropdown-item" href="#">Technical</a>
+                        <a class="dropdown-item" href="#">Casual</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link {% if title == 'Blog' %} active {% endif %}" href="{% url 'blog-index' %}">Blog</a>
                 </li>
             </ul>
             </div>
@@ -58,8 +58,14 @@
     </header>
 
     <main>
-        {% block content %}{% endblock %}
+        <div class="d-flex flex-column min-vh-90 justify-content-center align-items-center" style="margin-top:5em;margin-bottom:5em;">
+            {% block content %}{% endblock %}
+        </div>
     </main>
-
+    <div class="container">
+        <footer class="py-3 my-4 border-top">
+          <p class="text-center text-muted">© 2025 Altug Karakurt</p>
+        </footer>
+      </div>
 </body>
 </html>
