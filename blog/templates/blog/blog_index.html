@@ -1,5 +1,5 @@
 {% extends "blog/blog_base.html" %}
-{% block content %}
+{% block blog-content %}
     {% for post in posts %}
     <article class="media content-section">
     <div class="media-body">
@@ -10,6 +10,5 @@
         <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content }}</p>
     </div>
-    </article>
     {% endfor %}
-{% endblock content %}
+{% endblock blog-content %}
