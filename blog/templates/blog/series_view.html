@@ -1,10 +1,13 @@
 {% extends "blog/blog_base.html" %}
 {% block blog-content %}
-    {% for post in blog_base_posts %}
+    <h2>{{ title }}</h2>
+    {{ description }}
+    <hr>
+    {% for post in posts %}
         <div>
             <h3><a href="{% url 'blog-post-view' post.id %}">{{ post.title }}</a></h3>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-            <p class="article-content">{{ post.content }}</p>
+            <p>{{ post.content }}</p>
         </div>
         <hr>
     {% endfor %}
