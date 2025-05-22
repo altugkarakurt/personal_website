@@ -1,10 +1,13 @@
 {% extends "blog/blog_base.html" %}
+
+{% load blog_filters %}
+
 {% block blog-content %}
     {% for post in posts %}
         <div>
             <h3><a href="{% url 'blog-post-view' post.url %}">{{ post.title }}</a></h3>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-            <p>{{ post.content }}</p>
+            <p>{{ post.blurb | render_markdown | safe }}</p>
         </div>
         <hr>
     {% endfor %}
