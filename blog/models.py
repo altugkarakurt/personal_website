@@ -22,6 +22,7 @@ class PostSeries(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=250)
+    url = models.CharField(max_length=250, default="")
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     tags = models.ManyToManyField(Tag, related_name="posts")

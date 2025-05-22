@@ -2,7 +2,7 @@
 {% block blog-content %}
     {% for post in posts %}
         <div>
-            <h3><a href="{% url 'blog-post-view' post.id %}">{{ post.title }}</a></h3>
+            <h3><a href="{% url 'blog-post-view' post.url %}">{{ post.title }}</a></h3>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             <p>{{ post.content }}</p>
         </div>
