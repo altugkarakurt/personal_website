@@ -1,6 +1,7 @@
-from pathlib import Path
-from dotenv import load_dotenv
 import os
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -11,9 +12,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = ["*"] if DEBUG else ["altugkarakurt.com", "www.altugkarakurt.com"]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://altugkarakurt.com"
-]
+CSRF_TRUSTED_ORIGINS = ["https://altugkarakurt.com"]
 
 INSTALLED_APPS = [
     "blog.apps.BlogConfig",
@@ -50,7 +49,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "blog.context_processors.blog_base_context"
+                "blog.context_processors.blog_base_context",
             ],
         },
     },
@@ -82,7 +81,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Denver"
 
 USE_I18N = True
 
