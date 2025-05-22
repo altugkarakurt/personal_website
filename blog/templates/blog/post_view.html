@@ -1,7 +1,7 @@
 {% extends "blog/blog_base.html" %}
 {% block blog-content %}
   <h2>{{ title }}</h2>
-  <p class="text-muted">{{ post.date_posted|date:"F d, Y" }}</p>
+  <p class="text-muted">{{ date_posted|date:"F d, Y" }}</p>
   <hr>
   <p>{{ content }}</p>
   <div class="d-flex flex-row">

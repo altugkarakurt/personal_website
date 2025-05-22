@@ -31,5 +31,10 @@ def series_view(request, series_title):
 
 def post_view(request, post_url):
     post = Post.objects.get(url=post_url)
-    context = {"title": post.title, "content": post.content, "tags": post.tags.all()}
+    context = {
+        "title": post.title,
+        "content": post.content,
+        "tags": post.tags.all(),
+        "date_posted": post.date_posted,
+    }
     return render(request, "blog/post_view.html", context)
