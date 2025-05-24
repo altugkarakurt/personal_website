@@ -40,13 +40,13 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link {% if title == 'Home' %} active {% endif %}" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-link {% if title == 'Home' %} active {% endif %}" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if title == 'About' %} active {% endif %}" href="{% url 'blog-about' %}">About</a>
+              <a class="nav-link {% if title == 'About' %} active {% endif %}" href="{% url 'about' %}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {% if title == 'Blog' %} active {% endif %}" href="{% url 'blog-post-list' %}">Blog</a>
+              <a class="nav-link {% if title == 'Blog' %} active {% endif %}" href="{% url 'post-list' %}">Blog</a>
             </li>
           </ul>
         </div>

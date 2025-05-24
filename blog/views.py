@@ -22,17 +22,6 @@ class PostListView(ListView):
     ordering = ["-date_posted"]
 
 
-def post_view(request, slug):
-    post = Post.objects.get(slug=slug)
-    context = {
-        "title": post.title,
-        "content": post.content,
-        "tags": post.tags.all(),
-        "date_posted": post.date_posted,
-    }
-    return render(request, "blog/post_detailview.html", context)
-
-
 class PostDetailView(DetailView):
     model = Post
 

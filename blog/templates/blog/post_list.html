@@ -5,7 +5,7 @@
 {% block blog-content %}
     {% for post in post_list %}
         <div>
-            <h3><a href="{% url 'blog-post-detail' post.slug %}">{{ post.title }}</a></h3>
+            <h3><a href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h3>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             <p class="article-content">{{ post.blurb | render_markdown | safe }}</p>
         </div>

@@ -9,7 +9,7 @@
   <p>{{ object.content | render_markdown | safe }}</p>
   <div class="d-flex flex-row">
       {% for tag in tags %}
-        <div class="m-1 px-2 py-1 bg-secondary rounded"><a href="{% url 'blog-tag-view' tag.title %}">{{ tag.title }}</a></div>
+        <div class="m-1 px-2 py-1 bg-secondary rounded"><a href="{% url 'tag-view' tag.title %}">{{ tag.title }}</a></div>
       {% endfor %}
   </div>
 {% endblock blog-content %}
