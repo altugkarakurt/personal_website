@@ -1,8 +1,8 @@
-{% extends "blog/blog_base.html" %}
+{% extends "blog/blog_list_base.html" %}
 
 {% load blog_filters %}
 
-{% block blog-content %}
+{% block blog-body %}
     {% for post in post_list %}
         <div>
             <h3><a href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h3>
@@ -11,4 +11,5 @@
         </div>
         <hr>
     {% endfor %}
-{% endblock blog-content %}
+{% endblock blog-body %}
+    

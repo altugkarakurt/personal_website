@@ -1,8 +1,8 @@
-{% extends "blog/blog_base.html" %}
+{% extends "blog/blog_list_base.html" %}
 
 {% load blog_filters %}
 
-{% block blog-content %}
+{% block blog-body %}
     <h2>Posts tagged with {{ title }}</h2>
     <hr>
     {% for post in posts %}
@@ -13,4 +13,4 @@
         </div>
         <hr>
     {% endfor %}
-{% endblock blog-content %}
+{% endblock blog-body %}
