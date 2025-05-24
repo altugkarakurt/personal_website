@@ -12,7 +12,7 @@
   <div class="d-flex flex-row">
     <p class="m-1 px-2 py-1">Tags:</p>
     {% for tag in object.tags.all %}
-      <div class="m-1 px-2 py-1 bg-secondary rounded"><a href="{% url 'tag-view' tag.title %}">{{ tag.title }}</a></div>
+      <div class="m-1 px-2 py-1 bg-secondary rounded"><a href="{% url 'post-tag-list' tag.title %}">{{ tag.title }}</a></div>
     {% endfor %}
   </div>
   {% endif %}
@@ -20,7 +20,7 @@
   <div class="d-flex flex-row">
     <p class="m-1 px-2 py-1">Series:</p>
     {% for series in object.series.all %}
-      <div class="m-1 px-2 py-1 bg-secondary rounded"><a href="{% url 'series-view' series.title %}">{{ series.title }}</a></div>
+      <div class="m-1 px-2 py-1 bg-secondary rounded"><a href="{% url 'post-series-list' series.title %}">{{ series.title }}</a></div>
     {% endfor %}
   </div>
   {% endif %}

@@ -3,13 +3,15 @@
 {% load blog_filters %}
 
 {% block blog-body %}
-  {% for post in post_list %}
+  <h2>Posts in {{ view.kwargs.series_title }} Series</h2>
+  {{ description }}
+  <hr>
+  {% for post in post_series_list %}
     <div>
       <h3><a href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h3>
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-      <p class="article-content">{{ post.blurb | render_markdown | safe }}</p>
+      <p>{{ post.blurb | render_markdown | safe }}</p>
     </div>
     <hr>
   {% endfor %}
 {% endblock blog-body %}
-    

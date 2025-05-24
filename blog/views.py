@@ -12,30 +12,33 @@ def about(request):
     return render(request, "blog/about.html", {"title": "About"})
 
 
-def blog(request):
-    return render(request, "blog/blog_index.html", {"title": "Blog"})
-
-
 class PostListView(ListView):
     model = Post
-    template_name = "blog/blog_index.html"
-    ordering = ["-date_posted"]
     paginate_by = 5
+    extra_context = {"title": "Blog"}
 
 
 class PostDetailView(DetailView):
     model = Post
 
 
-def tag_view(request, tag_title):
-    tag = Tag.objects.get(title=tag_title)
-    posts = tag.posts.order_by("-date_posted")
-    context = {"title": f"#{tag_title}", "tag_title": tag_title, "posts": posts}
-    return render(request, "blog/tag_view.html", context)
+class PostTagListView(ListView):
+    model = Post
+    template_name = "blog/post_tag_list.html"
+    context_object_name = "post_tag_list"
+    # paginate_by = 5
+
+    def get_queryset(self):
+        tag = Tag.objects.get(title=self.kwargs.get("tag_title"))
+        return tag.posts.all()
 
 
-def series_view(request, series_title):
-    series = PostSeries.objects.get(title=series_title)
-    posts = series.posts.order_by("-date_posted")
-    context = {"title": series_title, "description": series.description, "posts": posts}
-    return render(request, "blog/series_view.html", context)
+class PostSeriesListView(ListView):
+    model = Post
+    template_name = "blog/post_series_list.html"
+    context_object_name = "post_series_list"
+    # paginate_by = 5
+
+    def get_queryset(self):
+        series = PostSeries.objects.get(title=self.kwargs.get("series_title"))
+        return series.posts.all()
