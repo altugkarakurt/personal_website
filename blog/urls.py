@@ -8,5 +8,6 @@ urlpatterns = [
     path("blog/post/<str:post_url>/", views.post_view, name="blog-post-view"),
     path("blog/tag/<str:tag_title>/", views.tag_view, name="blog-tag-view"),
     path("blog/series/<str:series_title>/", views.series_view, name="blog-series-view"),
-    path("blog/", views.blog, name="blog-index"),
+    path("blog/", views.PostListView.as_view(), name="blog-index"),
+    # path("blog/", views.blog, name="blog-index"),
 ]

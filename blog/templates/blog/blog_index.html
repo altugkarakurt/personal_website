@@ -3,7 +3,7 @@
 {% load blog_filters %}
 
 {% block blog-content %}
-    {% for post in blog_base_posts %}
+    {% for post in post_list %}
         <div>
             <h3><a href="{% url 'blog-post-view' post.url %}">{{ post.title }}</a></h3>
             <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from .models import Post, PostSeries, Tag
 
@@ -13,6 +14,12 @@ def about(request):
 
 def blog(request):
     return render(request, "blog/blog_index.html", {"title": "Blog"})
+
+
+class PostListView(ListView):
+    model = Post
+    template_name = "blog/blog_index.html"
+    ordering = ["-date_posted"]
 
 
 def tag_view(request, tag_title):
