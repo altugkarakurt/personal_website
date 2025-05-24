@@ -27,7 +27,7 @@ class Post(models.Model):
     blurb = models.CharField(max_length=500, blank=True)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
-    tags = models.ManyToManyField(Tag, related_name="posts")
+    tags = models.ManyToManyField(Tag, related_name="posts", blank=True)
     series = models.ManyToManyField(PostSeries, related_name="posts", blank=True)
 
     def __str__(self):
