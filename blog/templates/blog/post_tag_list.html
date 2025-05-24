@@ -2,6 +2,10 @@
 
 {% load blog_filters %}
 
+{% block title-block %}
+<title>Posts with #{{ view.kwargs.tag_title }} -  Altug Karakurt</title>
+{% endblock title-block %}
+
 {% block blog-body %}
   <h2>Posts tagged with #{{ view.kwargs.tag_title }}</h2>
   <hr>

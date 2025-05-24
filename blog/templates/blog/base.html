@@ -25,9 +25,9 @@
   {% if title %}
     <title>{{ title }} - Altug Karakurt</title>
   {% else %}
-    <title>Altug Karakurt</title>
+    {% block title-block %}{% endblock %}
   {% endif %}
-    <title></title>
+
 </head>
 <body>
   <!-- Header Navigation Bar -->

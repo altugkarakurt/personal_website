@@ -2,6 +2,10 @@
 
 {% load blog_filters %}
 
+{% block title-block %}
+<title>{{ object.title }} -  Altug Karakurt</title>
+{% endblock title-block %}
+
 {% block blog-content %}
   <h2>{{ object.title }}</h2>
   <p class="text-muted">{{ object.date_posted|date:"F d, Y" }}</p>
