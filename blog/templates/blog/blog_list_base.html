@@ -2,7 +2,7 @@
 
 {% block blog-content %}
   {% block blog-body %}{% endblock %}
-  {% if page_obj.paginator.count > 0 %}
+  {% if is_paginated %}
     <div class="d-flex flex-row justify-content-center">
       {% if page_obj.has_previous %}
         <a class="btn btn-outline-info btn m-1" href="?page=1">&laquo;</a>
