@@ -3,10 +3,10 @@
 {% load blog_filters %}
 
 {% block blog-content %}
-  <h2>{{ title }}</h2>
-  <p class="text-muted">{{ date_posted|date:"F d, Y" }}</p>
+  <h2>{{ object.title }}</h2>
+  <p class="text-muted">{{ object.date_posted|date:"F d, Y" }}</p>
   <hr>
-  <p>{{ content | render_markdown | safe }}</p>
+  <p>{{ object.content | render_markdown | safe }}</p>
   <div class="d-flex flex-row">
       {% for tag in tags %}
         <div class="m-1 px-2 py-1 bg-secondary rounded"><a href="{% url 'blog-tag-view' tag.title %}">{{ tag.title }}</a></div>

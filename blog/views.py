@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from .models import Post, PostSeries, Tag
 
@@ -22,6 +22,21 @@ class PostListView(ListView):
     ordering = ["-date_posted"]
 
 
+def post_view(request, slug):
+    post = Post.objects.get(slug=slug)
+    context = {
+        "title": post.title,
+        "content": post.content,
+        "tags": post.tags.all(),
+        "date_posted": post.date_posted,
+    }
+    return render(request, "blog/post_detailview.html", context)
+
+
+class PostDetailView(DetailView):
+    model = Post
+
+
 def tag_view(request, tag_title):
     tag = Tag.objects.get(title=tag_title)
     posts = tag.posts.order_by("-date_posted")
@@ -34,14 +49,3 @@ def series_view(request, series_title):
     posts = series.posts.order_by("-date_posted")
     context = {"title": series_title, "description": series.description, "posts": posts}
     return render(request, "blog/series_view.html", context)
-
-
-def post_view(request, post_url):
-    post = Post.objects.get(url=post_url)
-    context = {
-        "title": post.title,
-        "content": post.content,
-        "tags": post.tags.all(),
-        "date_posted": post.date_posted,
-    }
-    return render(request, "blog/post_view.html", context)
