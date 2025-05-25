@@ -6,6 +6,9 @@ from django.utils import timezone
 class Tag(models.Model):
     title = models.CharField(max_length=250)
 
+    class Meta:
+        ordering = ["title"]
+
     def __str__(self):
         return f"#{self.title}"
 
@@ -16,6 +19,7 @@ class PostSeries(models.Model):
 
     class Meta:
         verbose_name_plural = "series"
+        ordering = ["title"]
 
     def __str__(self):
         return self.title
@@ -30,7 +34,6 @@ class Post(models.Model):
     tags = models.ManyToManyField(Tag, related_name="posts", blank=True)
     series = models.ManyToManyField(PostSeries, related_name="posts", blank=True)
 
-    # We order posts by new to old.
     class Meta:
         ordering = ["-date_posted"]
 
