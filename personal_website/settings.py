@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
-    "user_visit",
 ]
 
 MIDDLEWARE = [
@@ -35,7 +34,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "user_visit.middleware.UserVisitMiddleware",
 ]
 
 ROOT_URLCONF = "personal_website.urls"
