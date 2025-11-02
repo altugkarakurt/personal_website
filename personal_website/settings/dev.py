@@ -1,13 +1,13 @@
 from .base import *
+from dotenv import load_dotenv
+import os
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-c#uapc5dr%&#lanenv8g95#)ptl(2wi*uqu7$7yh^u4d2-7=kk"
+load_dotenv()
 
-# SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ["*"]
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+DEBUG = os.environ.get('DJANGO_DEBUG')
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
