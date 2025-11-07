@@ -9,3 +9,8 @@ dependencies = [
     "dotenv>=0.9.9",
     "wagtail>=7.1.2",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.4",
+]

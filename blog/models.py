@@ -14,6 +14,7 @@ from wagtail.snippets.models import register_snippet
     INDEX PAGES
 --------------------------------------------------------------------"""
 
+
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
 
@@ -25,63 +26,80 @@ class BlogIndexPage(Page):
 
     content_panels = Page.content_panels + ["intro"]
 
-class BlogTagIndexPage(Page):
 
+class BlogTagIndexPage(Page):
     def get_context(self, request):
-        tag = request.GET.get('tag')
+        tag = request.GET.get("tag")
         blogpages = BlogPage.objects.filter(tags__name=tag)
 
         context = super().get_context(request)
-        context['blogpages'] = blogpages
+        context["blogpages"] = blogpages
         return context
+
 
 """--------------------------------------------------------------------
     BLOG PAGE & RELATED UTIL
 --------------------------------------------------------------------"""
 
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
-        'BlogPage',
-        related_name='tagged_items',
-        on_delete=models.CASCADE
+        "BlogPage", related_name="tagged_items", on_delete=models.CASCADE
     )
+
 
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
-    projects = ParentalManyToManyField('blog.Project', blank=True)
+    projects = ParentalManyToManyField("blog.Project", blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
     def main_image(self):
         gallery_item = self.gallery_images.first()
-        return gallery_item.image if(gallery_item) else None
+        return gallery_item.image if (gallery_item) else None
 
     content_panels = Page.content_panels + [
-        MultiFieldPanel(["date", 
-                         FieldPanel("projects", widget=forms.CheckboxSelectMultiple),
-                         "tags",],
-                        heading="Blog information"),
-        "intro", "body", "gallery_images"
+        MultiFieldPanel(
+            [
+                "date",
+                FieldPanel("projects", widget=forms.CheckboxSelectMultiple),
+                "tags",
+            ],
+            heading="Blog information",
+        ),
+        "intro",
+        "body",
+        "gallery_images",
     ]
 
+
 class BlogPageGalleryImage(Orderable):
-    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name="gallery_images")
-    image = models.ForeignKey("wagtailimages.Image", on_delete=models.CASCADE, related_name='+')
+    page = ParentalKey(
+        BlogPage, on_delete=models.CASCADE, related_name="gallery_images"
+    )
+    image = models.ForeignKey(
+        "wagtailimages.Image", on_delete=models.CASCADE, related_name="+"
+    )
     caption = models.CharField(blank=True, max_length=250)
 
     panels = ["image", "caption"]
+
 
 """--------------------------------------------------------------------
     COLLECTIONS
 --------------------------------------------------------------------"""
 
+
 @register_snippet
 class Project(models.Model):
     name = models.CharField(max_length=255)
     project_image = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
     )
 
     panels = ["name", "project_image"]
@@ -90,4 +108,4 @@ class Project(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Projects'
+        verbose_name_plural = "Projects"
