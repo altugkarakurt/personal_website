@@ -29,30 +29,22 @@
         {# STYLE #}
         {% tailwind_css %}
         {% block extra_css %}{% endblock %}
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="color-scheme" content="light dark">
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍩</text></svg>"/>
 
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
+    <body class="container flex bg-zinc-900 mx-auto text-gray-500">
+        <div class={% block container_class %}"container mx-auto max-w-7xl"{% endblock %}>
+            {% include "components/header.html" %}
 
-        {% include "components/header.html" %}
+            <main id="main" class="grid bg-zinc-800 mx-auto">
+                {% block content %}{% endblock %}
+            </main>
 
-        {# Wrap your block content  within a <main> HTML5 tag: #}
-        <main id="main">
-            {% block content %}{% endblock %}
-        </main>
+            {% include "components/footer.html" %}
+        </div>
 
-        {% include "components/footer.html" %}
-
-        {# Global javascript #}
-
-        <script type="text/javascript" src="{% static 'altugsite/js/mysite.js' %}"></script>
-
-        {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-        {% endblock %}
     </body>
+    {% block extra_js %}{# Override this in templates to add extra javascript #}{% endblock %}
 </html>
 

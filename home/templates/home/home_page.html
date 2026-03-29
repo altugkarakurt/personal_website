@@ -1,20 +1,18 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
+{% load static %}
+{% load wagtailcore_tags %}
 
 {% block content %}
-    <div>
-        <h1>{{ page.title }}</h1>
-        {% image page.image fill-480x320 %}
-        <p>{{ page.hero_text }}</p>
-        {% if page.hero_cta_link %}
-            <a href="{% pageurl page.hero_cta_link %}">
-                {% firstof page.hero_cta page.hero_cta_link.title %}
-            </a>
-        {% endif %}
+    <div class="flex min-h-fit justify-start my-5 mx-5">
+        <div class="grid place-items-center items-center w-2/3">
+            <div class="grid gap-y-5 text-white">
+                <h1 class="text-4xl">Hello, I'm Altug Karakurt</h1>
+                <p>{{ page.home_text }}</p>
+                {{ page.body|richtext }}
+            </div>
+        </div>
+        <div class="grid place-items-center justify-end w-1/3 px-5 py-5">
+            <img class="rounded-full" src="{% static 'altugsite/images/altug.jpg' %}">
+        </div>
     </div>
-
-  {{ page.body|richtext }}
 {% endblock content %}
-

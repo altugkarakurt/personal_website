@@ -1,20 +1,20 @@
 {% load static %}
-<footer>
-    <p class="text-center">My name is Altug Karakurt. I am a graduate student at University of Colorado, Boulder interested in information theory, machine learning and scientific computing.</p>
-    <center>
-        <div>
-            <div class="col-sm">
-                <a href="https://scholar.google.com/citations?user=vMfCqr8AAAAJ" class="round_icon" target="_blank"><img src="{% static 'altugsite/images/scholar.svg' %}" width="30" height="30"></a>
+<footer class="flex justify-center items-center max-w-7xl px-5 py-5 bg-zinc-900">
+        <div class="h-full w-2/3 justify-start">
+            <p>© 2025-2026 Altug Karakurt | Built with Django/Wagtail, TailwindCSS and HTMX</p>
+        </div>
+        <div class="flex gap-x-2.5 justify-end w-1/3">
+            <div class="h-10 w-10">
+                <a class="h-full w-full object-contain" href="http://github.com/altugkarakurt/" target="_blank"><img src="{% static 'altugsite/images/github.svg' %}"></a>    
             </div>
-            <div class="col-sm">
-                <a href="https://www.linkedin.com/in/altugkarakurt/" class="round_icon" target="_blank"><img src="{% static 'altugsite/images/linkedin.svg' %}" width="30" height="30"></a>
+            <div class="h-10 w-10">
+                <a class="h-full w-full object-contain" href="https://www.linkedin.com/in/altugkarakurt/" target="_blank"><img src="{% static 'altugsite/images/linkedin.svg' %}"></a>
             </div>
-            <div class="col-sm">
-                <a href="http://github.com/altugkarakurt/" class="round_icon" target="_blank"><img src="{% static 'altugsite/images/github.svg' %}" width="30" height="30"></a>
+            <div class="h-10 w-10">
+                <a class="h-full w-full object-contain" href="https://scholar.google.com/citations?user=vMfCqr8AAAAJ" target="_blank"><img src="{% static 'altugsite/images/scholar.svg' %}"></a>
             </div>
-            <div class="col-sm">
-                <a href="mailto:altugkarakurt@gmail.com" class="round_icon" target="_blank"><img src="{% static 'altugsite/images/email.svg' %}" width="30" height="30"></a>
+            <div class="h-10 w-10">    
+                <a class="h-full w-full object-contain" href="mailto:altugkarakurt@gmail.com" target="_blank"><img src="{% static 'altugsite/images/email.svg' %}"></a>
             </div>
         </div>
-    </center>
 </footer>
