@@ -1,111 +1,59 @@
 from django.db import models
-from django import forms
-
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-
-from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
-from wagtail.snippets.models import register_snippet
-
-"""--------------------------------------------------------------------
-    INDEX PAGES
---------------------------------------------------------------------"""
+from wagtail.models import Page
+from wagtail.search import index
 
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
+    content_panels = Page.content_panels + ["intro"]
+    
+    subpage_types = ["blog.BlogPage"]
 
+    def get_posts(self):
+        return self.get_children().live().order_by("-first_published_at")
+    
     def get_context(self, request):
         context = super().get_context(request)
-        blogpages = self.get_children().live().order_by("-first_published_at")
-        context["blogpages"] = blogpages
+        context["posts"] = self.get_posts()
         return context
 
-    content_panels = Page.content_panels + ["intro"]
+
+class BlogPageTag(TaggedItemBase):
+    content_object = ParentalKey(
+        "BlogPage",
+        related_name="tagged_items",
+        on_delete=models.CASCADE
+    )
+    search_fields = Page.search_fields + [
+        index.SearchField("intro"),
+        index.SearchField("body"),
+    ]
 
 
 class BlogTagIndexPage(Page):
     def get_context(self, request):
         tag = request.GET.get("tag")
-        blogpages = BlogPage.objects.filter(tags__name=tag)
+        blogpages = BlogPage.objects.filter(tags__name=tag).live().order_by("-first_published_at")
 
         context = super().get_context(request)
         context["blogpages"] = blogpages
         return context
-
-
-"""--------------------------------------------------------------------
-    BLOG PAGE & RELATED UTIL
---------------------------------------------------------------------"""
-
-
-class BlogPageTag(TaggedItemBase):
-    content_object = ParentalKey(
-        "BlogPage", related_name="tagged_items", on_delete=models.CASCADE
-    )
 
 
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
-    projects = ParentalManyToManyField("blog.Project", blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
-    def main_image(self):
-        gallery_item = self.gallery_images.first()
-        return gallery_item.image if (gallery_item) else None
-
     content_panels = Page.content_panels + [
-        MultiFieldPanel(
-            [
-                "date",
-                FieldPanel("projects", widget=forms.CheckboxSelectMultiple),
-                "tags",
-            ],
-            heading="Blog information",
-        ),
+        "date",
         "intro",
         "body",
-        "gallery_images",
+        "tags",
     ]
 
-
-class BlogPageGalleryImage(Orderable):
-    page = ParentalKey(
-        BlogPage, on_delete=models.CASCADE, related_name="gallery_images"
-    )
-    image = models.ForeignKey(
-        "wagtailimages.Image", on_delete=models.CASCADE, related_name="+"
-    )
-    caption = models.CharField(blank=True, max_length=250)
-
-    panels = ["image", "caption"]
-
-
-"""--------------------------------------------------------------------
-    COLLECTIONS
---------------------------------------------------------------------"""
-
-
-@register_snippet
-class Project(models.Model):
-    name = models.CharField(max_length=255)
-    project_image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-
-    panels = ["name", "project_image"]
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = "Projects"
