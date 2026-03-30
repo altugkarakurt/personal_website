@@ -11,8 +11,11 @@
             <div class="grid gap-y-5 text-white text-justify">
                 <h1 class="text-4xl text-center">Hello, I'm Altug Karakurt</h1>
                 <p>{{ page.home_text }}</p>
-                {{ page.body|richtext }}
+                <article class="prose lg:prose-lg">
+                    {{ page.body|richtext }}
+                </article>
             </div>
         </div>
     </div>
 {% endblock content %}
+
