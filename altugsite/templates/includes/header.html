@@ -8,12 +8,12 @@
             </a>
         </div>
         <div id="menu" class="grow flex justify-end absolute p-5 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
-            {% include "components/navigation_item.html" with page=navigation_homepage label="Home" %}
+            {% include "includes/navigation_item.html" with page=navigation_homepage label="Home" %}
             {% if navigation_blogindex %}
-                {% include "components/navigation_item.html" with page=navigation_blogindex label="Blog" %}
+                {% include "includes/navigation_item.html" with page=navigation_blogindex label="Blog" %}
             {% endif %}
             {% if navigation_tagsindex %}
-                {% include "components/navigation_item.html" with page=navigation_tagsindex label="Tags" %}
+                {% include "includes/navigation_item.html" with page=navigation_tagsindex label="Tags" %}
             {% endif %}
         </div>
         <div id="menuToggle" class="h-16 w-16 p-5 cursor-pointer md:hidden">

@@ -35,13 +35,13 @@
 
     <body class="container flex bg-zinc-900 mx-auto text-gray-500 max-w-7xl">
         <div class="flex flex-col mx-auto my-auto h-screen">
-            {% include "components/header.html" %}
+            {% include "includes/header.html" %}
 
             <main id="main" class="grid bg-zinc-800 mx-auto my-auto">
                 {% block content %}{% endblock %}
             </main>
 
-            {% include "components/footer.html" %}
+            {% include "includes/footer.html" %}
         </div>
 
     </body>
