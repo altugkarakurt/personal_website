@@ -47,7 +47,13 @@ class BlogTagIndexPage(Page):
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
-    body = RichTextField(blank=True)
+    body = RichTextField(blank=True, 
+                         features=["code",
+                                   "blockquote",
+                                   "strikethrough",
+                                   "superscript",
+                                   "subscript",]
+    )
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
     content_panels = Page.content_panels + [

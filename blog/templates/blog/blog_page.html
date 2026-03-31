@@ -2,34 +2,32 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class%}template-blogpage{% endblock %} 
-
 {% block content %}
-  <h1>{{ page.title }}</h1>
-  <p class="meta">{{ page.date }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.date }}</p>
 
-  <div class="intro">{{ page.intro }}</div>
+    <div class="intro">{{ page.intro }}</div>
+    <article class="prose text-white">
+        {{ page.body | richtext }}
+    </article>
 
-  {{ page.body | richtext }}
-  
-{% with tags=page.tags.all %}
-    {% if tags %}
-        <span class="sr-only">Tags:</span>
-        <div class="tags">
-            {% for tag in tags %}
-                <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
-            {% endfor %}
-        </div>
-    {% endif %}
-{% endwith %}
-
-<nav aria-label="Post navigation">
-    {% with prev=page.get_prev_siblings.live.first next=page.get_next_siblings.live.first %}
-        {% if prev %}<a href="{% pageurl prev %}">{{ prev.title }}</a>{% endif %}
-        <a href="{{ page.get_parent.url }}">Return to blog index</a></p>
-        {% if next %}<a href="{% pageurl next %}">{{ next.title }}</a>{% endif %}
+    {% with tags=page.tags.all %}
+        {% if tags %}
+            <span class="sr-only">Tags:</span>
+            <div class="tags">
+                {% for tag in tags %}
+                    <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+                {% endfor %}
+            </div>
+        {% endif %}
     {% endwith %}
-</nav>
 
+    <nav>
+        {% with prev=page.get_prev_siblings.live.first next=page.get_next_siblings.live.first %}
+            {% if prev %}<a href="{% pageurl prev %}">{{ prev.title }}</a>{% endif %}
+            <a href="{{ page.get_parent.url }}">Return to blog index</a></p>
+            {% if next %}<a href="{% pageurl next %}">{{ next.title }}</a>{% endif %}
+        {% endwith %}
+    </nav>
 {% endblock %}
 
