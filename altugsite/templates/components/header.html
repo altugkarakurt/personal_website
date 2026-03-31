@@ -1,15 +1,13 @@
-{% load wagtailcore_tags %}
-{% load static %}
+{% load static wagtailcore_tags %}
 
 <nav class="w-full bg-zinc-900">
     <div class="flex items-center justify-between h-16">
         <div class="flex-shrink-0 p-5">
-            <a href="{% pageurl navigation_homepage %}"
-               class="text-xl font-bold text-white transition-colors">
+            <a href="{% pageurl navigation_homepage %}" class="text-xl font-bold text-white transition-colors">
                 {{ request.site.site_name|default:"Altug Karakurt" }}
             </a>
         </div>
-        <div id="menu" class="duration-100 grow flex justify-end absolute p-5 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
+        <div id="menu" class="grow flex justify-end absolute p-5 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
             {% include "components/navigation_item.html" with page=navigation_homepage label="Home" %}
             {% if navigation_blogindex %}
                 {% include "components/navigation_item.html" with page=navigation_blogindex label="Blog" %}
