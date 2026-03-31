@@ -4,6 +4,7 @@
 <html lang="en">
     <head>
         {# META #}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="utf-8" />
         {% if page.search_description %}
             <meta name="description" content="{{ page.search_description }}" />
@@ -32,11 +33,11 @@
 
     </head>
 
-    <body class="container flex bg-zinc-900 mx-auto text-gray-500">
-        <div class={% block container_class %}"container mx-auto max-w-7xl"{% endblock %}>
+    <body class="container flex bg-zinc-900 mx-auto text-gray-500 max-w-7xl">
+        <div class="flex flex-col mx-auto my-auto h-screen">
             {% include "components/header.html" %}
 
-            <main id="main" class="grid bg-zinc-800 mx-auto">
+            <main id="main" class="grid bg-zinc-800 mx-auto my-auto">
                 {% block content %}{% endblock %}
             </main>
 
