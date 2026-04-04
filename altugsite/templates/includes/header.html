@@ -1,0 +1,28 @@
+{% load static wagtailcore_tags navbar_tags %}
+
+{% get_navbar_pages as navbar_pages %}
+
+<nav class="w-full justify-start bg-zinc-900">
+    <div class="flex items-center justify-between h-16">
+        <div class="flex-shrink-0">
+            <div class="h-8 w-8 m-2">
+                <a class="h-full w-full object-contain" href="/"><img src="{% static 'altugsite/images/home.svg' %}"></a>
+            </div>
+        </div>
+        <div id="menu" class="grow flex justify-end absolute p-2 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
+            {% for page in navbar_pages %}
+                <a href="{% pageurl page %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">{{ page.title }}</a>
+            {% endfor %}
+        </div>
+        <div id="menuToggle" class="h-16 w-16 p-5 cursor-pointer md:hidden">
+            <img src="{% static 'altugsite/images/menu.svg' %}">
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.querySelector('#menuToggle').addEventListener('click', () => {
+        let menu = document.getElementById('menu');
+        menu.classList.toggle('top-[50px]');
+    });
+</script>
