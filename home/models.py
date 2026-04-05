@@ -3,6 +3,7 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 
 
 class HomePage(Page):
@@ -43,3 +44,16 @@ class HomePage(Page):
     
     subpage_types = ["blog.BlogIndexPage", "blog.BlogTagIndexPage"]
 
+@register_setting
+class FooterLinks(BaseGenericSetting):
+    github = models.URLField(blank=True, null=True)
+    scholar = models.URLField(blank=True, null=True)
+    email = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+
+    panels = [
+        FieldPanel("github"),
+        FieldPanel("scholar"),
+        FieldPanel("email"),
+        FieldPanel("linkedin"),
+    ]
