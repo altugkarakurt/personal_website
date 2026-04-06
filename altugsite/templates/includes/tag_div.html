@@ -1,6 +1,8 @@
 {% load wagtailcore_tags %}
 
-<a href="{% slugurl 'tags' %}?tag={{ tag_title }}" class="px-3 py-1 text-xs bg-zinc-900 text-white rounded-full border transition-colors border-black hover:bg-zinc-700 hover:border-white">
-    {{ tag_title }}
-</a>
+{% if tag_cnt %}
+    <a href="{% slugurl 'tags' %}?tag={{ tag_title }}" class="px-3 py-1 text-xs bg-zinc-900 text-white rounded-full border transition-colors border-black hover:bg-zinc-700 hover:border-white">{{ tag_title }} ({{ tag_cnt }})</a>
+{% else %}
+    <a href="{% slugurl 'tags' %}?tag={{ tag_title }}" class="px-3 py-1 text-xs bg-zinc-900 text-white rounded-full border transition-colors border-black hover:bg-zinc-700 hover:border-white">{{ tag_title }}</a>
+{% endif %}
 

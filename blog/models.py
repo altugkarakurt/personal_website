@@ -1,11 +1,17 @@
 from django.db import models
+from django.db.models import Count
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
-from taggit.models import TaggedItemBase
+from taggit.models import TaggedItemBase, Tag
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 from wagtail.search import index
 
+
+def get_popular_tags():
+    return Tag.objects.annotate(
+        num_times = Count("blog_blogpagetag_items")
+    ).order_by('-num_times')[:10]
 
 class BlogIndexPage(Page):
     ###################################
@@ -30,6 +36,7 @@ class BlogIndexPage(Page):
     def get_context(self, request):
         context = super().get_context(request)
         context["posts"] = self.get_posts()
+        context["popular_tags"] = get_popular_tags()
         return context
 
 
@@ -39,6 +46,7 @@ class BlogPageTag(TaggedItemBase):
         related_name="tagged_items",
         on_delete=models.CASCADE
     )
+
     search_fields = Page.search_fields + [
         index.SearchField("intro"),
         index.SearchField("body"),
@@ -52,6 +60,7 @@ class BlogTagIndexPage(Page):
 
         context = super().get_context(request)
         context["blogpages"] = blogpages
+        context["popular_tags"] = get_popular_tags()
         return context
 
 

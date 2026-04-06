@@ -59,3 +59,4 @@ class FooterLinks(BaseGenericSetting):
         FieldPanel("email"),
         FieldPanel("linkedin"),
     ]
+

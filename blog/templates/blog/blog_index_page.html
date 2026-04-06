@@ -8,10 +8,11 @@
             <p class="text-center text-2xl text-white font-bold">Browse by Tag</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-            {% include "includes/tag_div.html" with tag_title="Architecture" %}
-            {% include "includes/tag_div.html" with tag_title="Design" %}
-            {% include "includes/tag_div.html" with tag_title="Tailwind" %}
-            {% include "includes/tag_div.html" with tag_title="React" %}            
+            {% for tag in popular_tags %}
+                {% include "includes/tag_div.html" with tag_title=tag.name tag_cnt=tag.num_times %}
+            {% empty %}
+                <p>No tagged posts found.</p>
+            {% endfor %} 
         </div>
     </div>
     <div class="grid place-items-center items-center w-full justify-start md:justify-end">
@@ -23,7 +24,7 @@
             {% for post in posts %}
                 {% include "includes/post_preview_div.html" with post=post.specific %}
             {% endfor %}
-            <hr class="block md:hidden border-t border-gray-300 my-5">
+            <hr class="block md:hidden border-t border-gray-300 my-2">
         </div>
     </div>
 </div>

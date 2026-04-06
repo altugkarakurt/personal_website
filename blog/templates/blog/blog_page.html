@@ -16,7 +16,7 @@
             <span class="sr-only">Tags:</span>
             <div class="tags">
                 {% for tag in tags %}
-                    <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button type="button">{{ tag }}</button></a>
+                    <a href="{% slugurl 'tags' %}?tag={{ tag.name }}"><button type="button">{{ tag.name }}</button></a>
                 {% endfor %}
             </div>
         {% endif %}
