@@ -8,6 +8,11 @@ from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 
 class HomePage(Page):
     ###################################
+    # Configuration
+    ###################################
+    max_count = 1 # There should only be one homepage
+
+    ###################################
     # Content Panels
     ###################################
     image = models.ForeignKey(
@@ -37,10 +42,7 @@ class HomePage(Page):
         FieldPanel("body"),
     ]
 
-    ###################################
-    # Configuration
-    ###################################
-    max_count = 1 # There should only be one homepage
+
     
     subpage_types = ["blog.BlogIndexPage", "blog.BlogTagIndexPage"]
 

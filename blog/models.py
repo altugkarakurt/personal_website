@@ -8,11 +8,22 @@ from wagtail.search import index
 
 
 class BlogIndexPage(Page):
-    intro = RichTextField(blank=True)
-    content_panels = Page.content_panels + ["intro"]
-    
+    ###################################
+    # Configuration
+    ###################################
+    max_count = 1 # There should only be one blog-index
+    parent_page_types = ["home.HomePage"]
     subpage_types = ["blog.BlogPage"]
 
+    ###################################
+    # Content Panels
+    ###################################
+    intro = RichTextField(blank=True)
+    content_panels = Page.content_panels + ["intro"]
+
+    ###################################
+    # Methods
+    ###################################
     def get_posts(self):
         return self.get_children().live().order_by("-first_published_at")
     
