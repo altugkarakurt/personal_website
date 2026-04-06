@@ -1,0 +1,17 @@
+{% load wagtailcore_tags %}
+
+<div class="text-justify w-full max-h-100 py-5 px-5 hover:bg-zinc-700 rounded-xl">
+    <div class="flex items-baseline justify-between">
+        <h2 class="text-xl text-white text-center font-semibold"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+        <time class="text-zinc-200 text-end" datetime="{{ post.date|date:'Y-m-d' }}">
+            {{ post.date|date:"F j, Y"}}
+        </time>
+    </div>
+    <div class="flex flex-wrap items-center py-2 gap-2">
+        {% for tag in post.tags.all %}
+            {% include "includes/tag_div.html" with tag_title=tag %}
+        {% endfor %}
+    </div>
+     <p>{{ post.intro }}</p>
+</div>
+
