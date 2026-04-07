@@ -3,7 +3,10 @@ from django.db.models import Count
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase, Tag
-from wagtail.fields import RichTextField
+from wagtail import blocks
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import RichTextField, StreamField
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 from wagtail.search import index
 
@@ -11,9 +14,10 @@ from wagtail.search import index
 def get_popular_tags():
     return Tag.objects.annotate(
         num_times = Count("blog_blogpagetag_items")
-    ).order_by('-num_times')[:10]
+    ).exclude(num_times=0).order_by('-num_times')[:10]
 
 class BlogIndexPage(Page):
+
     ###################################
     # Configuration
     ###################################
@@ -65,21 +69,35 @@ class BlogTagIndexPage(Page):
 
 
 class BlogPage(Page):
+
+    ###################################
+    # Configuration
+    ###################################
+    parent_page_types = ["blog.BlogIndexPage"]
+
+    ###################################
+    # Content Panels
+    ###################################
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
-    body = RichTextField(blank=True, 
-                         features=["code",
-                                   "blockquote",
-                                   "strikethrough",
-                                   "superscript",
-                                   "subscript",]
-    )
+    body = StreamField([
+        ("content", blocks.RichTextBlock(
+            features=["bold", "italic", "link", "ol", "ul", "hr"],
+            template="blocks/richtext.html"
+        )),
+        ("image", ImageChooserBlock(
+            template="blocks/image.html"
+        )),
+        ("quote", blocks.BlockQuoteBlock(
+            templte="blocks/quote.html"
+        )),
+    ])
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
     content_panels = Page.content_panels + [
-        "date",
-        "intro",
-        "body",
-        "tags",
+        FieldPanel("date"),
+        FieldPanel("intro"),
+        FieldPanel("body"),
+        FieldPanel("tags"),
     ]
 

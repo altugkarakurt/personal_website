@@ -3,31 +3,48 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
+    <div class="w-full p-10">
+        <div class="flex items-center justify-between my-5">
+            <h1 class="text-3xl text-white text-center font-bold">{{ page.title }}</h1>
+            <time class="text-zinc-200 text-end" datetime="{{ page.date|date:'Y-m-d' }}">
+                {{ page.date|date:"F j, Y"}}
+            </time>
+        </div>
 
-    <div class="intro">{{ page.intro }}</div>
-    <article class="prose text-white">
-        {{ page.body | richtext }}
-    </article>
 
-    {% with tags=page.tags.all %}
-        {% if tags %}
-            <span class="sr-only">Tags:</span>
-            <div class="tags">
-                {% for tag in tags %}
-                    <a href="{% slugurl 'tags' %}?tag={{ tag.name }}"><button type="button">{{ tag.name }}</button></a>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endwith %}
+        <div class="w-full text-white mb-5">
+            {{ page.intro }}
+        </div>
 
-    <nav>
-        {% with prev=page.get_prev_siblings.live.first next=page.get_next_siblings.live.first %}
-            {% if prev %}<a href="{% pageurl prev %}">{{ prev.title }}</a>{% endif %}
-            <a href="{{ page.get_parent.url }}">Return to blog index</a></p>
-            {% if next %}<a href="{% pageurl next %}">{{ next.title }}</a>{% endif %}
-        {% endwith %}
-    </nav>
+        <div class="w-full text-white mb-5">
+            {% include_block page.body %}
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 my-5">
+            {% with tags=page.tags.all %}
+                {% if tags %}
+                    <div class="tags">
+                        {% for tag in tags %}
+                            {% include "includes/tag_div.html" with tag_title=tag %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <nav class="flex w-full justify-center gap-x-5">
+            {% with prev=page.get_prev_siblings.live.first next=page.get_next_siblings.live.first %}
+            {% if prev %}
+                <a href="{% pageurl prev %}" title="{{ prev.title }}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Previous Post</a>
+            {% endif %}
+            
+            <a href="{{ page.get_parent.url }}" title="Blog Index" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Blog Index</a>
+            
+            {% if next %}
+                <a href="{% pageurl next %}" title="{{ next.title }}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Next Post</a>
+            {% endif %}
+            {% endwith %}
+        </nav>
+    </div>
 {% endblock %}
 

@@ -26,11 +26,11 @@
 
     </head>
 
-    <body class="container flex bg-zinc-900 mx-auto text-gray-500 max-w-7xl">
-        <div class="flex flex-col mx-auto my-auto h-screen">
+    <body class="container flex min-w-full bg-zinc-900 mx-auto text-gray-500 max-w-7xl">
+        <div class="flex flex-col mx-auto my-auto h-screen w-full max-w-7xl">
             {% include "includes/header.html" %}
 
-            <main id="main" class="grid bg-zinc-800 mx-auto my-auto rounded-xl">
+            <main id="main" class="grid bg-zinc-800 mx-auto my-auto rounded-xl w-full">
                 {% block content %}{% endblock %}
             </main>
 
