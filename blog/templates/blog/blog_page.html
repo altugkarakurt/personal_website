@@ -16,9 +16,11 @@
             {{ page.intro }}
         </div>
 
-        <div class="w-full text-white mb-5">
+        <div class="w-full text-white items-center mb-5">
             {% include_block page.body %}
         </div>
+
+        <hr>
 
         <div class="flex flex-wrap items-center gap-2 my-5">
             {% with tags=page.tags.all %}
