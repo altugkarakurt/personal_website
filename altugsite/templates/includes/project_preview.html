@@ -1,0 +1,29 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% image project.image original as img %}
+
+<div class="group relative flex h-64 w-[300px] flex-col items-center justify-center overflow-hidden rounded-xl bg-zinc-700 text-center shadow-lg transition-all duration-250">
+  
+    <div class="absolute inset-0 z-0 bg-cover bg-center transition-opacity duration-250 group-hover:opacity-0" style="background-image: url('{{ img.url }}');">
+        <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+
+    <div class="relative z-10 p-6">
+        <h2 class="text-2xl font-bold text-white transition-transform duration-250 group-hover:-translate-y-2">
+            <a href="{% pageurl project %}">{{ project.title }}</a>
+        </h2>
+
+        <p class="my-2 overflow-hidden text-gray-200 opacity-0 transition-all duration-250 group-hover:max-h-40 group-hover:opacity-100">
+            {{ project.intro }}
+        </p>
+
+
+        {% if project.tools %}
+            <div class="flex justify-center gap-x-2">
+                {% for tool in project.tools %}
+                    {% include "includes/logo_div.html" with logo=tool %}
+                {% endfor%}
+            </div>
+        {% endif %}
+    </div>
+</div>

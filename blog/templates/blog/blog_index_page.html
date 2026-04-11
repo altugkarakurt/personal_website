@@ -2,12 +2,12 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<div class="flex flex-col-reverse md:flex-row place-items-start min-h-fit m-3 gap-5 p-5 bg-zinc-800 rounded-lg">
-    <div class="grid place-items-center p-3 w-full md:max-w-1/4">
-        <div class="w-full justify-center pb-5"> 
+<div class="flex flex-col-reverse md:flex-row place-items-start min-h-fit m-3 gap-3">
+    <div class="grid content-start bg-zinc-800 p-3 w-full md:max-w-1/4 rounded-xl">
+        <div class="w-full justify-start pb-5"> 
             <p class="text-center text-2xl text-white font-bold">Browse by Tag</p>
         </div>
-        <div class="flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap justify-start gap-2">
             {% for tag in popular_tags %}
                 {% include "includes/tag_div.html" with tag_title=tag.name tag_cnt=tag.num_times %}
             {% empty %}
@@ -22,7 +22,7 @@
         
         <div class="flex-col justify-end">
             {% for post in posts %}
-                {% include "includes/post_preview_div.html" with post=post.specific %}
+                {% include "includes/post_preview.html" with post=post.specific %}
             {% endfor %}
 
         {% if posts.paginator.num_pages > 1 %}
@@ -37,8 +37,8 @@
             </nav>
         {% endif %}
 
-            <hr class="block md:hidden border-t border-gray-300 my-2">
         </div>
+        <hr class="block md:hidden border-t border-gray-300 my-2">
     </div>
 </div>
 {% endblock %}

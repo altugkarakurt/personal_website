@@ -3,20 +3,18 @@
 {% get_navbar_pages as navbar_pages %}
 
 <nav class="w-full justify-start bg-zinc-900 max-w-7xl">
-    <div class="flex items-center justify-between h-16">
-        <div id="menu" class="grow flex justify-start absolute p-2 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
+    <div class="flex items-center justify-between h-16 mx-3">
+        <div id="menu" class="grow flex justify-start absolute gap-x-5 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
             {% for page in navbar_pages %}
                 <a href="{% pageurl page %}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">{{ page.title }}</a>
             {% endfor %}
         </div>
         <div id="menuToggle" class="h-16 w-16 p-5 cursor-pointer md:hidden">
-            <img src="{% static 'altugsite/images/menu.svg' %}" class="hover:brightness-150">
+            <img src="{% static 'altugsite/images/logo/menu.svg' %}" class="hover:brightness-150">
         </div>
         {% if request.path != "/" %}
-            <div class="flex-shrink-0">
-                <div class="h-8 w-8 m-2">
-                    <a class="h-full w-full object-contain" href="/"><img class="hover:brightness-150" src="{% static 'altugsite/images/home.svg' %}"></a>
-                </div>
+            <div class="h-10 w-10">
+                <a class="h-full w-full object-contain" href="/"><img class="hover:brightness-150" src="{% static 'altugsite/images/logo/home.svg' %}"></a>
             </div>
         {% endif %}
     </div>

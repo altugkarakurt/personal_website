@@ -3,21 +3,21 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-        <nav class="flex w-full justify-center gap-x-5">
-            {% with prev=page.get_prev_siblings.live.first next=page.get_next_siblings.live.first %}
-            {% if prev %}
-                <a href="{% pageurl prev %}" title="{{ prev.title }}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Previous Post</a>
-            {% endif %}
+    <nav class="flex w-full justify-center gap-x-5">
+        {% with prev=page.get_prev_siblings.live.first next=page.get_next_siblings.live.first %}
+        {% if prev %}
+            <a href="{% pageurl prev %}" title="{{ prev.title }}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Previous Post</a>
+        {% endif %}
             
-            <a href="{{ page.get_parent.url }}" title="Blog Index" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Blog Index</a>
+        <a href="{{ page.get_parent.url }}" title="Blog Index" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Blog Index</a>
             
-            {% if next %}
-                <a href="{% pageurl next %}" title="{{ next.title }}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Next Post</a>
-            {% endif %}
-            {% endwith %}
-        </nav>
+        {% if next %}
+            <a href="{% pageurl next %}" title="{{ next.title }}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">Next Post</a>
+        {% endif %}
+        {% endwith %}
+    </nav>
 
-    <div class="w-full p-5 m-5 max-w-5xl mx-auto bg-zinc-800 rounded-lg">
+    <div class="w-full p-5 md:p-10 m-5 max-w-5xl mx-auto">
         <div class="flex items-center justify-between my-5">
             <h1 class="text-3xl text-white text-center font-bold">{{ page.title }}</h1>
             <time class="text-zinc-200 text-end" datetime="{{ page.date|date:'Y-m-d' }}">
@@ -34,21 +34,15 @@
             {% include_block page.body %}
         </div>
 
-        <hr>
-
-        <div class="flex flex-wrap items-center gap-2 my-5">
-            {% with tags=page.tags.all %}
-                {% if tags %}
-                    <div class="tags">
-                        {% for tag in tags %}
-                            {% include "includes/tag_div.html" with tag_title=tag %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
-        </div>
-
-
+        {% with tags=page.tags.all %}
+            {% if tags %}
+                <div class="flex flex-wrap p-5 w-fit justify-center items-center mt-2 mx-auto gap-2 bg-zinc-800 rounded-xl">
+                    {% for tag in tags %}
+                        {% include "includes/tag_div.html" with tag_title=tag %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
     </div>
 {% endblock %}
 

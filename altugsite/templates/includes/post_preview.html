@@ -1,6 +1,6 @@
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags %}
 
-<div class="text-justify min-w-100 justify-start max-h-100 py-5 px-5 hover:bg-zinc-700 rounded-xl">
+<div class="text-justify w-full justify-start max-h-100 py-5 px-5 hover:bg-zinc-700 rounded-xl">
     <div class="flex items-baseline justify-between">
         <h2 class="text-xl text-white text-center font-semibold"><a href="{% pageurl post %}">{{ post.title }}</a></h2>
         <time class="text-zinc-200 text-end" datetime="{{ post.date|date:'Y-m-d' }}">

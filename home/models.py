@@ -1,20 +1,16 @@
 from django.db import models
-
+from wagtail import blocks
 from wagtail.models import Page
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
-
+from wagtail.images.blocks import ImageChooserBlock
 
 class HomePage(Page):
-    ###################################
     # Configuration
-    ###################################
     max_count = 1 # There should only be one homepage
 
-    ###################################
     # Content Panels
-    ###################################
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -42,6 +38,69 @@ class HomePage(Page):
         FieldPanel("body"),
     ]
 
+class ProjectIndexPage(Page):
+
+    # Configuration
+    max_count = 1 # There should only be one blog-index
+    parent_page_types = ["home.HomePage"]
+    subpage_types = ["home.ProjectPage"]
+
+    # Content Panels
+    intro = models.TextField(blank=True, max_length=2000)
+    content_panels = Page.content_panels + ["intro"]
+
+    # Methods
+    def get_context(self, request):
+        context = super().get_context(request)
+        projects = self.get_children().live().order_by("-first_published_at")
+
+        context["projects"] = projects
+        return context
+
+class ProjectPage(Page):
+
+    # Configuration
+    parent_page_types = ["home.ProjectIndexPage"]
+    intro = models.TextField(blank=True, max_length=1000)
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Project image",
+    )
+
+    # Content Panels
+    body = StreamField([
+        ("content", blocks.RichTextBlock(
+            features=["bold", "italic", "link", "ol", "ul", "hr"],
+            template="blocks/richtext.html"
+        )),
+        ("image", ImageChooserBlock(
+            template="blocks/image.html"
+        )),
+        ("quote", blocks.BlockQuoteBlock(
+            templte="blocks/quote.html"
+        )),
+    ])
+
+    tools = StreamField([
+        ('tool', blocks.CharBlock(label="Tool")),
+    ], blank=True, help_text="Add a list of strings")
+
+    content_panels = Page.content_panels + [
+        FieldPanel("intro"),
+        FieldPanel("image"),
+        FieldPanel("body"),
+        FieldPanel("tools"),
+    ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        tag = request.GET.get("tag")
+        context["tools"] = self.tools
+        return context
 
     
     subpage_types = ["blog.BlogIndexPage", "blog.BlogTagIndexPage"]

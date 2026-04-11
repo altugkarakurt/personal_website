@@ -8,25 +8,25 @@
         {% with settings.home.FooterLinks as footer_links%} 
             {% if footer_links.github %}
                 <div class="h-10 w-10">
-                    <a class="h-full w-full object-contain" href="{{ footer_links.github }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/github.svg' %}"></a>    
+                    <a class="h-full w-full object-contain" href="{{ footer_links.github }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/logo/github.svg' %}"></a>    
                 </div>
             {% endif %}
 
             {% if footer_links.linkedin %}
                 <div class="h-10 w-10">
-                    <a class="h-full w-full object-contain" href="{{ footer_links.linkedin }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/linkedin.svg' %}"></a>
+                    <a class="h-full w-full object-contain" href="{{ footer_links.linkedin }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/logo/linkedin.svg' %}"></a>
                 </div>
             {% endif %}
 
             {% if footer_links.scholar %}
                 <div class="h-10 w-10">
-                    <a class="h-full w-full object-contain" href="{{ footer_links.scholar }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/scholar.svg' %}"></a>
+                    <a class="h-full w-full object-contain" href="{{ footer_links.scholar }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/logo/scholar.svg' %}"></a>
                 </div>
             {% endif %}
 
             {% if footer_links.email %}
                 <div class="h-10 w-10">    
-                    <a class="h-full w-full object-contain" href="mailto:{{ footer_links.email }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/email.svg' %}"></a>
+                    <a class="h-full w-full object-contain" href="mailto:{{ footer_links.email }}" target="_blank"><img class="hover:brightness-150" src="{% static 'altugsite/images/logo/email.svg' %}"></a>
                 </div>
             {% endif %}
         {% endwith %}

@@ -1,0 +1,9 @@
+{% load static wagtailcore_tags %}
+
+{% with logo|stringformat:"s"|lower as logo_str %}
+
+<div class="h-10 w-10">
+    <img class="h-full w-full object-contain opacity-0 group-hover:opacity-100" src="{% static 'altugsite/images/logo/'|add:logo_str|add:'.svg' %}" title="{{ logo }}">
+</div>
+
+{% endwith %}

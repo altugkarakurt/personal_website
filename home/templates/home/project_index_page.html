@@ -1,0 +1,16 @@
+{% extends "base.html" %} 
+{% load static wagtailcore_tags %}
+
+{% block content %}
+<div class="flex flex-col-reverse md:flex-row place-items-start min-h-fit w-full mx-auto max-w-5xl gap-5 p-5">
+    <div class="w-full justify-start">
+        
+        <div class="flex flex-wrap gap-4 max-w-[1000px] justify-center mx-auto">
+             {% for project in projects %}
+                {% include "includes/project_preview.html" with project=project.specific %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
