@@ -4,7 +4,7 @@
 
 <nav class="w-full justify-start bg-zinc-900 max-w-7xl">
     <div class="flex items-center justify-between h-16 mx-3">
-        <div id="menu" class="grow flex justify-start absolute gap-x-5 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
+        <div id="menu" class="grow flex justify-start absolute gap-x-5 z-100 md:relative flex-col md:flex-row top-[-100%] md:top-[inherit] bg-zinc-900 md:bg-transparent min-w-50">
             {% for page in navbar_pages %}
                 <a href="{% pageurl page %}" class="inline-flex items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">{{ page.title }}</a>
             {% endfor %}

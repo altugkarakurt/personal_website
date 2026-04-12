@@ -3,3 +3,11 @@
 @source "../../../**/*.{html,py,js}";
 
 @plugin "@tailwindcss/typography";
+
+@theme {
+    --color-tsgray: #8E8E8E;
+    --color-tsgreen: #125D0D;
+    --color-tsblue: #121063;
+    --color-tspurple: #7851A9;
+    --color-tsorange: #cc5500;
+}

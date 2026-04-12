@@ -1,0 +1,16 @@
+{% load static wagtailcore_tags %}
+
+{% with logo|stringformat:"s"|lower as logo_str %}
+{% with color|stringformat:"s" as color_str %}
+
+<div class="flex items-center gap-2 w-fit rounded-md bg-{{ color_str }} m-2 p-2" title="{{ title }}">
+    <div class="h-10 w-10 ml-2 mr-1">
+        <img class="h-full w-full object-contain" src="{% static 'altugsite/images/logo/'|add:logo_str|add:'.svg' %}">
+    </div>
+  
+    <span class="text-white leading-none ml-1 mr-2">
+        {{ logo }}
+    </span>
+</div>
+
+{% endwith %}{% endwith %}

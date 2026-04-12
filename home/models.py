@@ -56,12 +56,6 @@ class ProjectIndexPage(Page):
         context["projects"] = projects
         return context
 
-class TechStackPage(Page):
-    # Configuration
-    max_count = 1 # There should only be one tech-stack page
-    parent_page_types = ["home.HomePage"]
-    subpage_types = []
-
 class ProjectPage(Page):
     # Configuration
     parent_page_types = ["home.ProjectIndexPage"]
