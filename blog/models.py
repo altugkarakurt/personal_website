@@ -11,21 +11,23 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 from wagtail.search import index
 
+
 ###################################
 # Constants
 ###################################
 NUM_OF_POPULAR_TAGS = 10
 POSTS_PER_PAGE = 2 # Pagination
 
+
 ###################################
 # Util Functions
 ###################################
-
 # Returns the 10 most popular tags with non-zero uses.
 def get_popular_tags():
     return Tag.objects.annotate(
         num_times = Count("blog_blogpagetag_items")
     ).exclude(num_times=0).order_by('-num_times')[:NUM_OF_POPULAR_TAGS]
+
 
 ###################################
 # Classes
@@ -67,11 +69,6 @@ class BlogPageTag(TaggedItemBase):
         related_name="tagged_items",
         on_delete=models.CASCADE
     )
-
-    search_fields = Page.search_fields + [
-        index.SearchField("intro"),
-        index.SearchField("body"),
-    ]
 
 
 class BlogTagIndexPage(Page):
@@ -124,3 +121,7 @@ class BlogPage(Page):
         FieldPanel("tags"),
     ]
 
+    search_fields = Page.search_fields + [
+        index.SearchField("intro"),
+        index.SearchField("body"),
+    ]

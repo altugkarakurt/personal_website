@@ -5,6 +5,8 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.contrib.settings.models import BaseGenericSetting, register_setting
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.search import index
+
 
 class HomePage(Page):
     # Configuration
@@ -92,6 +94,11 @@ class ProjectPage(Page):
         FieldPanel("image"),
         FieldPanel("body"),
         FieldPanel("tools"),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField("intro"),
+        index.SearchField("body"),
     ]
 
     def get_context(self, request):
