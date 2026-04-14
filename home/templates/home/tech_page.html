@@ -1,0 +1,118 @@
+{% extends "base.html" %} 
+{% load static wagtailcore_tags %}
+
+{% block content %}
+<div class="max-w-5xl w-full mx-auto rounded-xl overflow-hidden">
+    <!-- The Pane Selector -->
+    <nav class="flex">
+        <button onclick="openPane(event, 'pane-1')" class="tab-btn flex-1 py-4 px-1 text-center font-bold text-white text-xl bg-zinc-800">
+            Languages
+        </button>
+        <button onclick="openPane(event, 'pane-2')" class="tab-btn flex-1 py-4 px-1 text-center font-bold text-gray-500 text-xl bg-zinc-900">
+           Scientific Computing
+        </button>
+        <button onclick="openPane(event, 'pane-3')" class="tab-btn flex-1 py-4 px-1 text-center font-bold text-gray-500 text-xl bg-zinc-900">
+            Web Development
+        </button>
+        <button onclick="openPane(event, 'pane-4')" class="tab-btn flex-1 py-4 px-1 text-center font-bold text-gray-500 text-xl bg-zinc-900">
+            Dev Tools
+        </button>
+    </nav>
+
+    <!-- Container of the Pane -->
+    <div class="bg-zinc-800">
+        <!-- Languages -->
+        <div id="pane-1" class="flex flex-wrap justify-center pane-content block px-3">
+            {% include "includes/logo_text_div.html" with logo="Python" color="tspurple" title="My Primary Language" %}
+            {% include "includes/logo_text_div.html" with logo="C&C++" color="tsblue" title="For High Performance Applicatios" %}
+            {% include "includes/logo_text_div.html" with logo="Rust" color="tsgreen" title="Currently Studying to Replace C&C++" %}
+            {% include "includes/logo_text_div.html" with logo="Lua" color="tsgreen" title="Primarily for Vim Configuration" %}
+            {% include "includes/logo_text_div.html" with logo="Java" color="tsgray" title="Learned During Undergraduate" %}
+            {% include "includes/logo_text_div.html" with logo="JavaScript" color="tsgray" title="For Minor Frontend Scripts" %}
+        </div>
+
+
+        <!-- Scientific Computing -->
+        <div id="pane-2" class="flex flex-wrap justify-center pane-content hidden px-3">
+            {% include "includes/logo_text_div.html" with logo="NumPy" color="tspurple" title="Numerical Calculations" %}
+            {% include "includes/logo_text_div.html" with logo="Scipy" color="tspurple" title="Computational Algorithms" %}
+            {% include "includes/logo_text_div.html" with logo="Scikit-Learn" color="tspurple" title="Machine Learning" %}
+            {% include "includes/logo_text_div.html" with logo="Matplotlib" color="tspurple" title="Simple Visualization" %}
+            {% include "includes/logo_text_div.html" with logo="Jupyter" color="tspurple" title="Organizing & Presenting Workflows" %}
+            {% include "includes/logo_text_div.html" with logo="pandas" color="tsblue" title="Data Manipulation" %}
+            {% include "includes/logo_text_div.html" with logo="NetworkX" color="tsblue" title="Graph/Network Processing" %}
+            {% include "includes/logo_text_div.html" with logo="Cython" color="tsblue" title="Speeding Python & Incorporating C" %}
+            {% include "includes/logo_text_div.html" with logo="PuLP" color="tsblue" title="Linear Programming" %}
+            {% include "includes/logo_text_div.html" with logo="pypoman" color="tsblue" title="Polyhedral Combinatorics" %}
+            {% include "includes/logo_text_div.html" with logo="sms-tools" color="tsblue" title="Audio Signal Processing" %}
+            {% include "includes/logo_text_div.html" with logo="SQL" color="tsgreen" title="I Rarely Direct Query Anymore Thanks to Django/Pandas" %}
+            {% include "includes/logo_text_div.html" with logo="SymPy" color="tsgreen" title="Symbolic Math" %}
+            {% include "includes/logo_text_div.html" with logo="Seaborn" color="tsgreen" title="Advanced Visualization" %}
+            {% include "includes/logo_text_div.html" with logo="PyTorch" color="tsgreen" title="Currently Learning for Large-Scale Machine Learning" %}
+            {% include "includes/logo_text_div.html" with logo="pillow" color="tsgreen" title="Image Processing" %}
+            {% include "includes/logo_text_div.html" with logo="SimPy" color="tsgray" title="Discrete-Event Simulation" %}
+            {% include "includes/logo_text_div.html" with logo="MATLAB" color="tsgray" title="I Hope I'll Never Have to Touch This Again" %}
+        </div>
+
+        <!-- Web Dev -->
+        <div id="pane-3" class="flex flex-wrap justify-center pane-content hidden px-3">
+            {% include "includes/logo_text_div.html" with logo="Django" color="tspurple" title="My Primary Backend Framework" %}
+            {% include "includes/logo_text_div.html" with logo="Wagtail" color="tspurple" title="Content Management System for Django" %}
+            {% include "includes/logo_text_div.html" with logo="TailwindCSS" color="tsblue" title="My Primary Frontend Framework" %}
+            {% include "includes/logo_text_div.html" with logo="Bootstrap" color="tsblue" title="For Quick but Boring Frontend" %}
+            {% include "includes/logo_text_div.html" with logo="Material-UI" color="tsblue" title="For Quick but Boring Frontend" %}
+            {% include "includes/logo_text_div.html" with logo="Flask" color="tsgreen" title="For Simple Projects When Django is an Overkill" %}
+            {% include "includes/logo_text_div.html" with logo="HTMX" color="tsblue" title="Currently Studying to Reduce My Reliance on JavaScript" %}
+            {% include "includes/logo_text_div.html" with logo="React" color="tsgray" title="I Only Used It in Small Scale Projects (Against My Will)" %}
+        </div>
+
+        <!-- Dev Tools -->
+        <div id="pane-4" class="flex flex-wrap justify-center pane-content hidden px-3">
+            {% include "includes/logo_text_div.html" with logo="Github" color="tspurple" title="Git Issues? I Can Help with That" %}
+            {% include "includes/logo_text_div.html" with logo="NeoVim" color="tsblue" title="You Can Type ':q' to Quit Vim, but I'll Always Be Here" %}
+            {% include "includes/logo_text_div.html" with logo="Docker" color="tsgreen" title="Currently Learning for More Robust Deployment" %}
+            {% include "includes/logo_text_div.html" with logo="Jenkins" color="tsgreen" title="Currently Learning to Re-Incorporate CI/CD in My Workflow" %}
+            {% include "includes/logo_text_div.html" with logo="Travis-CI" color="tsgray" title="Used in Past Projects" %}
+        </div>
+    
+        <hr class="my-2">
+        <div class="flex-col">
+        <div class="flex flex-wrap w-full mx-auto justify-center py-3 text-md text-white gap-2">
+            <div class="p-2 underline">Legend:</div>
+            <div class="bg-tspurple p-2 rounded-xl">Advanced</div>
+            <div class="bg-tsblue p-2 rounded-xl">Intermediate</div>
+            <div class="bg-tsgreen p-2 rounded-xl">Novice</div>
+            <div class="bg-tsgray p-2 rounded-xl">Used to Know</div>
+        </div>
+        <div class="justify-center text-center text-white pb-2">
+            <p>Hover over items for details
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function openPane(evt, paneName) {
+        // Hide all panes
+        document.querySelectorAll('.pane-content').forEach(pane => {
+            pane.classList.add('hidden');
+            pane.classList.remove('block');
+        });
+
+        // Reset all tab styles
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('bg-zinc-800', 'text-white');
+            btn.classList.add('bg-zinc-900', 'text-gray-500');
+        });
+
+        // Show the specific pane
+        document.getElementById(paneName).classList.remove('hidden');
+        document.getElementById(paneName).classList.add('block');
+
+        // Style the clicked tab
+        evt.currentTarget.classList.add('bg-zinc-800', 'text-white');
+        evt.currentTarget.classList.remove('bg-zinc-900', 'text-gray-500');
+    }
+</script>
+{% endblock %}

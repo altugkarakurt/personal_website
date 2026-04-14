@@ -40,6 +40,13 @@ class HomePage(Page):
         FieldPanel("body"),
     ]
 
+class TechPage(Page):
+    # Configuration
+    max_count = 1 # There should only be one project-index
+    parent_page_types = ["home.HomePage"]
+    subpage_types = []
+
+
 class ProjectIndexPage(Page):
     # Configuration
     max_count = 1 # There should only be one project-index
