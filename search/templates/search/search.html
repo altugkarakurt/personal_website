@@ -5,7 +5,7 @@
 <div class = "bg-zinc-800 w-full max-w-5xl text-white mx-auto rounded-xl p-3">
     <form action="{% url 'search' %}" method="get" class="w-full">
         <div class="flex justify-center p-2 gap-2">
-            <input class="w-full bg-zinc-700 p-3 rounded-xl" type="text" name="query" placeholder="Search here" value="{% if search_query %}{{ search_query }}{% endif %}">
+            <input id="search_bar" class="w-full bg-zinc-700 p-3 rounded-xl" type="text" name="query" placeholder="Search here" value="{% if search_query %}{{ search_query }}{% endif %}">
             <input type="submit" value="Search" class="w-fit p-2 items-center px-3 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" 
       placeholder="Search for anything..." >
         </div>
@@ -45,4 +45,15 @@
         </div>
     {% endif %}
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script> 
+    document.addEventListener("DOMContentLoaded", function() {
+        var field = document.getElementById('search_bar');
+        if (field) {
+            field.focus();
+        }
+    });
+</script>
 {% endblock %}
