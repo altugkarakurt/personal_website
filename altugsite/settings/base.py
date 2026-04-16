@@ -12,10 +12,11 @@ load_dotenv()
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = PROJECT_DIR.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-DEBUG = os.getenv("DJANGO_DEBUG")
+DEBUG = (os.getenv("DJANGO_DEBUG") == "True")
 ALLOWED_HOSTS = ["*"] if DEBUG else os.getenv("DJANGO_ALLOWED_HOSTS")
-if not DEBUG:
-    CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS")
+
+# if not DEBUG:
+#    CSRF_TRUSTED_ORIGINS = os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS")
 
 #######################################
 # APPLICATION DEFINITIONS 
