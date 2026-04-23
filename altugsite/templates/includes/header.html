@@ -12,8 +12,9 @@
         <div id="menuToggle" class="h-16 w-16 p-5 cursor-pointer md:hidden">
             <img src="{% static 'altugsite/images/logo/menu.svg' %}" class="hover:brightness-150">
         </div>
+        <div class="flex gap-x-3">
         {% if request.path != "/" %}
-            <div class="h-10 w-10">
+            <div class="justify-end h-10 w-10">
                 <a class="h-full w-full object-contain" href="/"><img class="hover:brightness-150" src="{% static 'altugsite/images/logo/home.svg' %}"></a>
             </div>
         {% endif %}
@@ -23,6 +24,7 @@
                 <a class="h-full w-full object-contain" href="/search"><img class="hover:brightness-150" src="{% static 'altugsite/images/logo/search.svg' %}"></a>
             </div>
         {% endif %}
+        </div>
     </div>
 </nav>
 

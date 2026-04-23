@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
 
+{% block title %}
+    Search - {{ this_site.site_name }}
+{% endblock %}
+
 {% block content %}
 <div class = "bg-zinc-800 w-full max-w-5xl text-white mx-auto rounded-xl p-3">
     <form action="{% url 'search' %}" method="get" class="w-full">
