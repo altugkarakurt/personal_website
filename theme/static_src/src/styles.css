@@ -11,3 +11,22 @@
     --color-tspurple: #7851A9;
     --color-tsorange: #cc5500;
 }
+
+@utility wagtail-content {
+  /* Apply the typography plugin's inverted rules (for dark backgrounds) */
+  @apply prose prose-invert max-w-none;
+
+  & a {
+    color: var(--color-sky-400);
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-sky-400) 30%, transparent);
+    transition-property: color, text-decoration-color;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  & a:hover {
+    color: var(--color-sky-600);
+    text-decoration-color: var(--color-sky-500);
+  }
+}
