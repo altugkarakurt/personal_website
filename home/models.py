@@ -50,6 +50,7 @@ class TechPage(Page):
 class ProjectIndexPage(Page):
     # Configuration
     max_count = 1 # There should only be one project-index
+    admin_default_ordering = "ord" # Use the manual ordering from the admin panel
     parent_page_types = ["home.HomePage"]
     subpage_types = ["home.ProjectPage"]
 
@@ -60,7 +61,7 @@ class ProjectIndexPage(Page):
     # Methods
     def get_context(self, request):
         context = super().get_context(request)
-        projects = self.get_children().live().order_by("-first_published_at")
+        projects = self.get_children().live().order_by("-latest_revision_created_at")
 
         context["projects"] = projects
         return context
